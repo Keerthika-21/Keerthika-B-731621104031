@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Factorial</title>
+        <script>
+            function fact(){
+                let n1=parseInt(document.getElementById("n1").value); 
+                let i;
+                let facto=1;
+                
+                for(i=1;i<=n1;i++)
+                  facto=facto*i;
+
+                document.getElementById("ResultDiv").innerHTML=facto;
+
+            }
+        </script>
+    </head>
+    <body>
+        enter first number<input type ="text" id="n1" value="enter a number" onfocus="this.value" onblur="fact()"/> <br>
+        
+        <br>
+        <div id="ResultDiv"></div>
+    </body>
+</html>

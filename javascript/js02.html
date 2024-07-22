@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Palindrome Checker</title>
+    <script>
+        function palindrome() {
+            let n1 = document.getElementById("n1").value;
+            let palindromee = true;
+            
+                for (let i = 0, j = n1.length - 1; i < j; i++, j--) {
+                if (n1.charAt(i) !== n1.charAt(j)) {
+                    palindromee = false;
+                    break;  
+                }
+            }
+            
+            
+            if (palindromee) {
+                document.getElementById("ResultDiv").innerHTML = "a palindrome!";
+            } else {
+                document.getElementById("ResultDiv").innerHTML = "Not a palindrome.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <label>Enter a number or word: </label>
+    <input type="text" id="n1" placeholder="Enter a number or word" onblur="palindrome()">
+    <br><br>
+    <div id="ResultDiv"></div>
+</body>
+</html>
