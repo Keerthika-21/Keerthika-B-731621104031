@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Student Information</title>
+</head>
+<body>
+    <div id="demo"></div>
+
+    <script>
+        // Using object literal
+        var student1 = {
+            name: "Chris",
+            age: 21,
+            studies: "Computer Science"
+        };
+
+        // Display information from object literal
+        document.getElementById("demo").innerHTML = student1.name + " of age " + student1.age + "<br> studies " + student1.studies;
+
+        // Using Object constructor
+        var student2 = new Object();
+        student2.name = "Emma";
+        student2.age = 22;
+        student2.studies = "Data Science";
+
+        // Display information from object constructor
+        document.getElementById("demo").innerHTML += "<br>" + student2.name + " <br>age " + student2.age + " <br> studies " + student2.studies;
+    </script>
+</body>
+</html>

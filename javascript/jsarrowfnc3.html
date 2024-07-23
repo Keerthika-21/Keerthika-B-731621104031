@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Sum Example</title>
+</head>
+<body>
+    <script>
+        // without passing an args
+        const sum = () => 10 + 20;
+        document.write("<br>Addition: " + sum())
+        const sub = () => 30-21;
+        document.write("<br>Subtraction: " + sub())
+        //with passing an args
+        const mul = ( a,b) => a*b;
+        document.write("<br>multiplication: " + mul(10 , 20))
+        //optional function
+        const div = (x,y) => {return(x/y)};
+        document.write("<br>Division: " + div(10,5))
+        //optonal type
+        const big =(a,b)=>{
+            if(a>b)
+             return a;
+            else
+              return b;
+        }
+        document.write("<br>Biggest Number: " + big(10,5))
+        //factorial program
+        const fact=(x) =>{
+                let facto=1;
+                for( let i=1;i<=x;i++){
+                  facto=facto*i;
+                }
+                return facto;
+                }
+                document.write("fcactorial:"+ fact(5))
+
+    </script>
+</body>
+</html>

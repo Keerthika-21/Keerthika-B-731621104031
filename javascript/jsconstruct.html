@@ -1,0 +1,33 @@
+<<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information</title>
+</head>
+<body>
+    <div id="demo"></div>
+
+    <script>
+        // Define class for Student
+        class Student {
+            constructor(name, age, studies) {
+                this.name = name;
+                this.age = age;
+                this.studies = studies;
+            }
+
+            display() {
+                document.getElementById("demo").innerHTML += "<br> Student age: " + this.age;
+                document.getElementById("demo").innerHTML += "<br> Student name: " + this.name;
+                document.getElementById("demo").innerHTML += "<br> Student studies: " + this.studies;
+            }
+        }
+
+        //  display information
+        var student1 = new Student("Chris", 21, "Computer Science");
+        student1.display();
+
+        var student2 = new Student("Emma", 22, "Data Science");
+        student2.display();
+    </script>
+</body>
+</html>
