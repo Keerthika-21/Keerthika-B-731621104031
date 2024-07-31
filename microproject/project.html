@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Mark Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://images.unsplash.com/photo-1498810229785-bf23e623a3e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGZvcmVzdCUyQ3Bhbm9yYW1hJTIwbm9uLWhhcmQ&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center fixed;
+            background-size: cover;
+        }
+        header {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        form input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Mark Management System</h1>
+    </header>
+    <div class="container">
+        <form id="studentForm">
+            <h2>Add Student Marks</h2>
+            <input type="text" id="studentName" placeholder="Student Name" required>
+            <input type="number" id="tamil" placeholder="Tamil Marks" required min="0" max="100">
+            <input type="number" id="english" placeholder="English Marks" required min="0" max="100">
+            <input type="number" id="maths" placeholder="Maths Marks" required min="0" max="100">
+            <input type="number" id="science" placeholder="Science Marks" required min="0" max="100">
+            <input type="number" id="social" placeholder="Social Marks" required min="0" max="100">
+            <input type="number" id="discipline" placeholder="Discipline Marks" required min="0" max="100">
+            <button type="submit">Add Marks</button>
+        </form>
+
+        <button id="sortButton">Sort by Name</button>
+
+        <h2>Student Marks List</h2>
+        <table id="marksTable">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Tamil</th>
+                    <th>English</th>
+                    <th>Maths</th>
+                    <th>Science</th>
+                    <th>Social</th>
+                    <th>Discipline</th>
+                    <th>Total Marks</th>
+                    <th>Percentage</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('studentName').value;
+            const tamil = parseFloat(document.getElementById('tamil').value) || 0;
+            const english = parseFloat(document.getElementById('english').value) || 0;
+            const maths = parseFloat(document.getElementById('maths').value) || 0;
+            const science = parseFloat(document.getElementById('science').value) || 0;
+            const social = parseFloat(document.getElementById('social').value) || 0;
+            const discipline = parseFloat(document.getElementById('discipline').value) || 0;
+            
+            const totalMarks = tamil + english + maths + science + social + discipline;
+            const percentage = (totalMarks / 600) * 100;
+            const grade = calculateGrade(totalMarks);
+
+            if (name) {
+                const tableBody = document.getElementById('marksTable').getElementsByTagName('tbody')[0];
+                const newRow = tableBody.insertRow();
+                newRow.insertCell().textContent = name;
+                newRow.insertCell().textContent = tamil;
+                newRow.insertCell().textContent = english;
+                newRow.insertCell().textContent = maths;
+                newRow.insertCell().textContent = science;
+                newRow.insertCell().textContent = social;
+                newRow.insertCell().textContent = discipline;
+                newRow.insertCell().textContent = totalMarks;
+                newRow.insertCell().textContent = percentage.toFixed(2) + '%';
+                newRow.insertCell().textContent = grade;
+
+                document.getElementById('studentName').value = '';
+                document.getElementById('tamil').value = '';
+                document.getElementById('english').value = '';
+                document.getElementById('maths').value = '';
+                document.getElementById('science').value = '';
+                document.getElementById('social').value = '';
+                document.getElementById('discipline').value = '';
+            }
+        });
+
+        function calculateGrade(totalMarks) {
+            if (totalMarks >= 600) return 'A';
+            if (totalMarks >= 500) return 'B';
+            if (totalMarks >= 400) return 'C';
+            if (totalMarks >= 300) return 'D';
+            return 'F';
+        }
+
+        document.getElementById('sortButton').addEventListener('click', function() {
+            const table = document.getElementById('marksTable');
+            const rows = Array.from(table.getElementsByTagName('tbody')[0].getElementsByTagName('tr'));
+            rows.sort((a, b) => a.getElementsByTagName('td')[0].textContent.localeCompare(b.getElementsByTagName('td')[0].textContent));
+            rows.forEach(row => table.getElementsByTagName('tbody')[0].appendChild(row));
+        });
+    </script>
+</body>
+</html>
